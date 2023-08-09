@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/geneids', [App\Http\Controllers\DataController::class,'getGeneids']);
+Route::get('/expriment', [App\Http\Controllers\DataController::class,'getExpriment']);
+Route::get('/sra', [App\Http\Controllers\DataController::class,'getSra']);
+Route::get('/disease', [App\Http\Controllers\DataController::class,'getDisease']);
+Route::post('/get-chart-data', [App\Http\Controllers\DataController::class,'getChartData']);
