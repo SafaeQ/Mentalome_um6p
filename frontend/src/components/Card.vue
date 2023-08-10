@@ -170,6 +170,7 @@ export default {
 .card_0 {
   display: block;
   position: relative;
+  top: -73px;
   max-width: auto;
   height: auto;
   background-color: #ffffff;

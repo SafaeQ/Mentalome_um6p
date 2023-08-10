@@ -19,9 +19,14 @@ export default {
         </nav>
       </div>
     </header>
-    <div class="title">
-      Mentalome: Unveiling the Complex Landscape of Psychiatric Disorders through Comprehensive
-      Transcriptome Analysis
+    <div class="main">
+      <div class="title">
+        <h2>Mentalome</h2>
+        <p>
+          Unveiling the Complex Landscape of Psychiatric Disorders through Comprehensive
+          Transcriptome Analysis
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -59,22 +64,25 @@ nav {
   width: 100px;
   margin-right: auto;
 }
+.main {
+  background-color: #1b1b1b;
+  margin: auto;
+  height: 245px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: auto;
+}
 
 .title {
-  /* background-color: #DFD3C3; */
-  color: #333;
-  font-size: larger;
+  color: #ffffff;
   font-weight: bold;
+  font-size: larger;
   padding: 1rem;
   text-align: center;
-  margin: 0 auto;
-  margin-top: 1rem;
-  width: 70%;
   align-self: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 @media (min-width: 768px) {
