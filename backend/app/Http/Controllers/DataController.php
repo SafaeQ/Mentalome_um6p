@@ -7,45 +7,6 @@ use App\Models\Data;
 
 class DataController extends Controller
 {
-    public function processData()
-    {
-        // Path to data file 
-        $filePath = storage_path('../../../data/test_data.txt');
-
-        $fileContents = file_get_contents($filePath);
-
-        // Split the file contents into individual lines
-        $lines = explode("\n", $fileContents);
-
-        $parsedData = [];
-
-        // Loop through each line and process the data
-        foreach ($lines as $line) {
-            // Split the line into columns using the tab delimiter
-            $columns = explode("\t", $line);
-
-            $id = $columns[0];
-            $geneIds = $columns[1];
-            $value = $columns[2];
-            $SRA = $columns[3];
-            $abbreviation = $columns[4];
-            $experiment = $columns[5];
-            $disease = $columns[6];
-
-            // Store the data in an associative array
-            $parsedData[] = [
-                'id' => $id,
-                'gene_ids' => $geneIds,
-                'value' => $value,
-                'SRA' => $SRA,
-                'abbreviation' => $abbreviation,
-                'experiment' => $experiment,
-                'disease' => $disease,
-            ];
-        }
-
-        return view('data', compact('parsedData'));
-    }
 
     public function getGeneids()
     {
