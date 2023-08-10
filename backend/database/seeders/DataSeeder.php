@@ -16,7 +16,7 @@ class DataSeeder extends Seeder
     {
         Data::truncate();
 
-        $csvFile = fopen(__DIR__."/../../data/test_data.csv", "r");
+        $csvFile = fopen(__DIR__."/../../public/data/test_data.csv", "r");
 
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {

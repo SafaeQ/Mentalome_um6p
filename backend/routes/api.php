@@ -23,3 +23,4 @@ Route::get('/expriment', [App\Http\Controllers\DataController::class,'getExprime
 Route::get('/sra', [App\Http\Controllers\DataController::class,'getSra']);
 Route::get('/disease', [App\Http\Controllers\DataController::class,'getDisease']);
 Route::post('/get-chart-data', [App\Http\Controllers\DataController::class,'getChartData']);
+Route::get('/get-chart-data', [App\Http\Controllers\DataController::class,'getChartData']);

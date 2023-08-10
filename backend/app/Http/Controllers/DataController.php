@@ -114,7 +114,7 @@ class DataController extends Controller
             $query->whereIn('sra', $subquery);
         }
 
-        $data = $query->limit(100)->get();
+        $data = $query->limit(50)->get();
 
         return $data;
     }
