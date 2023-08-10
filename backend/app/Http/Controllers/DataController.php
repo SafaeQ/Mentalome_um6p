@@ -43,12 +43,6 @@ class DataController extends Controller
 
     public function getChartData(Request $request)
     {
-        // if (!$request->gene_ids) {
-        //     $data = Data::where('disease', $request->disease)->where('experiment', $request->expriment)->where('sra', $request->sra)->limit(100)->get();
-        // } else {
-        //     $data = Data::whereIn('gene_ids', explode(',', $request->gene_ids))->where('disease', $request->disease)->where('experiment', $request->expriment)->where('sra', $request->sra)->limit(100)->get();
-        // }
-        // return $data;
 
         $query = Data::query();
 
