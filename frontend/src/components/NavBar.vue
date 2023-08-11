@@ -36,7 +36,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #0e0e0e;
+  background-color: #364a60;
   box-shadow: rgba(100, 100, 111, 0.338) 0px 7px 29px 0px;
   color: #fff;
   padding: 1rem;
@@ -65,7 +65,7 @@ nav {
   margin-right: auto;
 }
 .main {
-  background-color: #1b1b1b;
+  background-color: #fff;
   margin: auto;
   height: 245px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -73,7 +73,7 @@ nav {
 }
 
 .title {
-  color: #ffffff;
+  color: #0b0101;
   font-weight: bold;
   font-size: larger;
   padding: 1rem;
