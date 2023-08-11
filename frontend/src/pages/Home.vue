@@ -1,20 +1,24 @@
 <template>
-  <NavBar />
-  <Card @filterData="getHeatMapdata" />
-  <CardHeatmap :filterObj="filter" />
-  <Footer />
+  <div>
+    <HeaderComponent />
+    <main>
+      <FilterComponent @filterData="getHeatMapdata" />
+      <HeatMapComponent :filterObj="filter" />
+    </main>
+      <FooterComponent />
+  </div>
 </template>
 <script>
-import Card from '@/components/Card.vue'
-import NavBar from '@/components/NavBar.vue'
-import Footer from '@/components/Footer.vue'
-import CardHeatmap from '@/components/CardHeatmap.vue'
+import HeaderComponent from '@/components/HeaderComponent.vue'
+import FilterComponent from '@/components/FilterComponent.vue'
+import HeatMapComponent from '@/components/HeatMapComponent.vue'
+import FooterComponent from '@/components/FooterComponent.vue'
 export default {
   components: {
-    NavBar,
-    Card,
-    CardHeatmap,
-    Footer
+    HeaderComponent,
+    FilterComponent,
+    HeatMapComponent,
+    FooterComponent
   },
   data: () => {
     return {
@@ -23,7 +27,7 @@ export default {
   },
   methods: {
     getHeatMapdata: function (data) {
-        this.filter = data
+      this.filter = data
     }
   }
 }

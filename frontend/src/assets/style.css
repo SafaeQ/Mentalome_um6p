@@ -1,0 +1,44 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #fff;
+    color: #000000e7;
+    font-family: 'Rubik', sans-serif;
+}
+
+.btn.btn-primary {
+    background-color: #33CC75;
+    border-color: #33CC75;
+}
+
+.shadow {
+    box-shadow: #006b2e30 0px 1rem 3rem !important;
+}
+
+.shadow-sm {
+    box-shadow: #12a35182 0px 0.1rem 0.3rem !important
+}
+
+.card {
+    box-shadow: #006b2e30 0px 1rem 3rem !important;
+    border: none;
+}
+
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+a.nav-link.active {
+    border-bottom: 2px solid #fff;
+    font-weight: bold;
+}
