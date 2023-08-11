@@ -1,53 +1,39 @@
 <template>
   <div class="card_1">
     <h3 class="card-title">Heatmap</h3>
-    <div id="chart-div"></div>
+    <div id="chart-div" :data-filter="filterString"></div>
   </div>
 </template>
 
 <script>
-function convertToNumber(input) {
-  // Remove any non-alphanumeric characters from the input
-  const cleanedInput = input.replace(/[^a-zA-Z0-9]/g, '')
-
-  // Convert the cleaned input to a numeric representation
-  let numericValue = 0
-  for (let i = 0; i < cleanedInput.length; i++) {
-    const charCode = cleanedInput.charCodeAt(i)
-    numericValue += charCode
-  }
-
-  return numericValue
-}
-
-google.charts.load('upcoming', { packages: ['vegachart'] }).then(drawChart)
-
-function drawChart() {
+function drawChart(obj) {
   // A DataTable is required, but it can be empty.
   const dataTable = new google.visualization.DataTable()
-
+  let filterString = document.getElementById('chart-div').dataset.filter
   const options = {
     vega: {
       $schema: 'https://vega.github.io/schema/vega/v5.json',
-      width: "1100",
+      width: '1100',
       height: 500,
-      margin:0,
+      margin: 0,
       data: [
         {
           name: 'heatmap',
-          url: 'http://127.0.0.1:8000/api/get-chart-data?gene_ids=&disease=Autism&expriment=PRJNA143369',
+          url: `http://127.0.0.1:8000/api/get-chart-data${filterString}`,
           transform: [
+            { type: 'formula', as: 'gene_ids', expr: 'datum.gene_ids' },
             {
               type: 'formula',
-              as: 'hour',
-              expr: 'hours(datum.date)'
-            },
-            {
-              type: 'formula',
-              as: 'day',
-              expr: 'datetime(year(datum.date), month(datum.date), date(datum.date))'
+              as: 'sra',
+              expr: 'datum.sra'
             }
           ]
+        }
+      ],
+      signals: [
+        {
+          name: 'palette',
+          value: 'Turbo'
         }
       ],
       scales: [
@@ -66,11 +52,17 @@ function drawChart() {
         {
           name: 'color',
           type: 'linear',
-          range: { scheme: 'redyellowblue' },
+          range: ['#440154', '#2a768e', '#27ac81', '#fbe624'],
           domain: { data: 'heatmap', field: 'value' },
-          reverse: true,
-          zero: false,
+          reverse: false,
+          zero: true,
           nice: true
+        },
+        {
+          name: 'x2',
+          type: 'band',
+          domain: { data: 'heatmap', field: 'abbreviation' },
+          range: 'width'
         }
       ],
 
@@ -97,6 +89,10 @@ function drawChart() {
           scale: 'y',
           domain: false,
           title: 'Gene ids'
+        },
+        {
+          orient: 'top',
+          scale: 'x2'
         }
       ],
 
@@ -119,14 +115,15 @@ function drawChart() {
             enter: {
               x: { scale: 'x', field: 'sra' },
               y: { scale: 'y', field: 'gene_ids' },
-              width: { value: 5 },
-              height: { scale: 'y', band: 1 }
+              width: { scale: 'x', band: 1 },
+              height: { scale: 'y', band: 1 },
+              strokeWidth: { signal: 3 }
             },
             update: {
-              width: { signal: 20 },
-              height: { signal: 35 },
               opacity: { value: 1 },
-              strokeWidth: { signal: 0 }
+              strokeWidth: { value: 1 },
+              stroke: { value: '#ffffff' },
+              fill: { scale: 'color', field: 'value' }
             },
             hover: {
               opacity: { value: 0.5 }
@@ -139,6 +136,24 @@ function drawChart() {
 
   const chart = new google.visualization.VegaChart(document.getElementById('chart-div'))
   chart.draw(dataTable, options)
+}
+export default {
+  props: ['filterObj'],
+  data: function () {
+    return {
+      filterString: ''
+    }
+  },
+  watch: {
+    filterObj(value) {
+      this.filterString = `?gene_ids=${value.gene_ids}&disease=${value.disease}&expriment=${value.expriment}&sra=${value.sra}`
+      google.charts.load('upcoming', { packages: ['vegachart'] }).then(drawChart)
+    }
+  },
+  mounted() {
+    google.charts.load('upcoming', { packages: ['vegachart'] }).then(drawChart)
+  },
+  methods: {}
 }
 </script>
 

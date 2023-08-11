@@ -86,7 +86,8 @@ export default {
         expriment: '',
         sra: '',
         disease: '',
-        selectedGeneIds: []
+        selectedGeneIds: ["A2ML1"],
+        key: 1
       },
       geneIds: '',
       expriments: '',
@@ -116,6 +117,12 @@ export default {
     })
   },
 
+  mounted() {
+    setTimeout(() => {
+      this.search()
+    }, 1500)
+  },
+
   methods: {
     selectGeneId: function (id) {
       if (!this.filter.selectedGeneIds.includes(id)) {
@@ -140,17 +147,13 @@ export default {
       if (this.filter.expriment === 'All') {
         this.filter.expriment = null
       }
-
-      apiClient
-        .post('/get-chart-data', {
-          gene_ids: this.filter.selectedGeneIds.join(','),
-          disease: this.filter.disease,
-          expriment: this.filter.expriment,
-          sra: this.filter.sra
-        })
-        .then((res) => {
-          console.log('res', res)
-        })
+      this.$emit('filterData', {
+        gene_ids: this.filter.selectedGeneIds.join(','),
+        disease: this.filter.disease,
+        expriment: this.filter.expriment,
+        sra: this.filter.sra,
+        key: ++this.filter.key
+      })
     }
   }
 }

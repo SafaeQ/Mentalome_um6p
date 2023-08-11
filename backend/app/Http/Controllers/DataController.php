@@ -57,20 +57,13 @@ class DataController extends Controller
         // If sra or expriment is null include all data in the query
         if ($request->experiment) {
             $query->where('experiment', $request->experiment);
-        } else {
-            $subquery = Data::query()->select('experiment')->groupBy('experiment');
-            $query->whereIn('experiment', $subquery);
         }
 
         if ($request->sra) {
             $query->where('sra', $request->sra);
-        } else {
-            $subquery = Data::query()->select('sra')->groupBy('sra');
-            $query->whereIn('sra', $subquery);
         }
 
-        $data = $query->limit(50)->get();
-
+        $data = $query->limit(51)->get();
         return $data;
     }
 }

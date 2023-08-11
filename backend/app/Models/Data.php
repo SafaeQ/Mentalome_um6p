@@ -12,16 +12,4 @@ class Data extends Model
     protected $fillable = [
         'name', 'code'
     ];
-
-    public function getAttributes()
-    {
-        $attributes = parent::getAttributes();
-
-        // Modify the 'value' attribute if it exists
-        if (isset($attributes['sra'])) {
-            $attributes['sra'] .= rand(1111,9999);
-        }
-
-        return $attributes;
-    }
 }
