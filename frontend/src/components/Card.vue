@@ -65,20 +65,6 @@
 <script>
 import apiClient from '../utils/api'
 export default {
-  props: {
-    image: {
-      type: String,
-      required: true
-    },
-    title: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String,
-      required: true
-    }
-  },
 
   data: () => {
     return {
