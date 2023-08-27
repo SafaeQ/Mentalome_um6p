@@ -179,6 +179,7 @@ export default {
         key: ++this.filter.key
       })
     },
+    // search about geneids
     filterGeneIds: function (keyword) {
       this.filtredGenIds = this.geneIds.filter((e) => {
         return e.toLowerCase().includes(keyword.toLowerCase())
